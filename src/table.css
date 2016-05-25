@@ -46,7 +46,32 @@
     -webkit-overflow-scrolling: touch;
     overflow: scroll;
 }
-
+.table-body .tooltip{
+    position: absolute;
+    background: #000;
+    opacity: .8;
+    color: #fff;
+    font-size: 12px;
+    padding: 8px;
+    display: inline-block;
+    border-radius: 2px;
+    left: 50px;
+    z-index: 1000; 
+    top: -50px;
+    white-space: nowrap;
+}
+.table-body .tooltip:after{
+    content: ".";
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    bottom: -8px;
+    left: 50%;
+    margin-left: -10px;
+    border-top: 8px solid #000;
+}
 .table-wrapper{
     background: #f0f0f4;
 }

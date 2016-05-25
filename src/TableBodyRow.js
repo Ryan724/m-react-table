@@ -1,6 +1,7 @@
 import React, {Component, PropTypes } from 'react';
+import TableRowCell from './TableBodyRowCell.js';
 
-export default class TableBody extends Component {
+export default class TableBodyRow extends Component {
 
 	constructor(props) {
 		super(props);
@@ -12,25 +13,24 @@ export default class TableBody extends Component {
 	render() {
 		let {rowData ,tableStyle , queueCell } = this.props;
 		let rowVDOMArr = [];
-		queueCell.forEach((cell)=>{
+		queueCell.forEach((cell,index)=>{
 			let style ={ 
 				    textAlign : tableStyle.align,
 					width : cell.type==="subcol"?cell.width:cell.width, 
 					height : tableStyle.rowHeight,
-					lineHeight : tableStyle.rowHeight+"px"
+					lineHeight : tableStyle.rowHeight+"px",
+					overflow:this.props.device.ios?"scroll":"hidden"
 				};
-			let cellNode = (<div className = "cell" key={cell.name}  style={style}>
-					{this.cellRenderByType(rowData[cell.name] ,cell.isDrill,rowData.rowId)}
-				</div>)
+			let cellNode =<TableRowCell 
+									text  = {rowData[cell.name]}
+									cell  = {cell}
+									rowId = {rowData.rowId+"++"+cell.name}
+									style = {style} 
+									handRowClick = {this.props.handRowClick}/>
+
 			rowVDOMArr.push(cellNode);
 		})
-		return <div style={{height : tableStyle.rowHeight,overflow: "hidden"}}>{rowVDOMArr}</div>;
+		return<div style={{height : tableStyle.rowHeight}}>{rowVDOMArr}</div>;
 			
-	}
-
-	cellRenderByType(text, isDrill,rowId) {
-		return isDrill
-				? (<a data-rowid={rowId} style={{color:"#19afea"}} onClick={this.props.handRowClick.bind(null,rowId)}>{text}</a>) 
-				: (<span>{text}</span>);
 	}
 }
