@@ -22,6 +22,7 @@ export default class TableBodyRow extends Component {
 					overflow:this.props.device.ios?"scroll":"hidden"
 				};
 			let cellNode =<TableRowCell 
+									isFrist = {this.props.isFrist}
 									text  = {rowData[cell.name]}
 									cell  = {cell}
 									rowId = {rowData.rowId+"++"+cell.name}

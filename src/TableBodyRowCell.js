@@ -7,7 +7,7 @@ export default class TableBodyRowCell extends Component {
 		this.state = {showToolTip:"hidden"};
 	}
 	render() {
-		let {text,cell,rowId,style} = this.props;
+		let {text,cell,rowId,style,isFrist} = this.props;
 		let {showToolTip} = this.state
 		return (<span  style={{position:"relative"}}
 						tabIndex="3"
@@ -24,7 +24,7 @@ export default class TableBodyRowCell extends Component {
 								: (<span> {text}</span>)
 						}
 					</label>
-					<span className="tooltip" style={{visibility:showToolTip}}>{text}</span>
+					<span className={isFrist?"tooltip-frist":"tooltip" }style={{visibility:showToolTip}}>{text}</span>
 				</span> );
 	}
 	handTouchStart=()=>{

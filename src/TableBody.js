@@ -57,6 +57,7 @@ export default class TableBody extends Component {
 		return this.props.tableData["body"].length
 					?this.props.tableData["body"].map((rowData,key)=>{
 						return (<TableRow
+									isFrist = {key ===0}
 									key = {key}
 									rowData ={rowData}
 									handRowClick = {this.props.handRowClick}
